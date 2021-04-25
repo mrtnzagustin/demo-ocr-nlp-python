@@ -23,3 +23,5 @@ services:
             - docker.python.environment
         networks: 
             - default
+        ports:
+            - 8080:8080
