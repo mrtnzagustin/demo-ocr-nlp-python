@@ -1,0 +1,13 @@
+version: "3.7"
+
+services:
+    python:
+        build:
+            context: ./
+            dockerfile: ./docker/Dockerfile
+        volumes: 
+            - .:/usr/src/app
+        env_file:
+            - docker.environment
+        networks: 
+            - default
