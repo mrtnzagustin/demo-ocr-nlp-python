@@ -1,13 +1,25 @@
 version: "3.7"
 
 services:
-    python:
+    tika:
         build:
             context: ./
-            dockerfile: ./docker/Dockerfile
+            dockerfile: ./docker/tika/Dockerfile
         volumes: 
             - .:/usr/src/app
         env_file:
-            - docker.environment
+            - docker.tika.environment
+        networks: 
+            - default
+        ports:
+            - 9998:9998
+    python:
+        build:
+            context: ./
+            dockerfile: ./docker/python/Dockerfile
+        volumes: 
+            - .:/usr/src/app
+        env_file:
+            - docker.python.environment
         networks: 
             - default
