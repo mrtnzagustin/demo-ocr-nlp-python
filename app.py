@@ -22,9 +22,10 @@ def get_model_desc(nlp, model_name):
     model_version = nlp.meta["version"]
     return f"{lang_name} - {model_name} (v{model_version})"
 
-"""Get models included in api"""
+
 @hug.get("/models")
 def models():
+    """Get models included in api"""
     return {
         "models": {name: get_model_desc(nlp, name) for name, nlp in MODELS.items()},
         "labels": {name: nlp.pipe_labels for name, nlp in MODELS.items()},
@@ -33,8 +34,7 @@ def models():
 
 @hug.get("/ner/text")
 def ner(text: str):
-    """Get entities for file specified"""
-    
+    """Get entities for text specified"""
     try:
         # Obtain the spanish model
         nlp = MODELS["es_core_news_sm"]
@@ -59,8 +59,7 @@ def ner(text: str):
 
 @hug.get("/ner/file-path")
 def ner(filePath: str):
-    """Get entities for file specified"""
-    
+    """Get entities for filePath specified"""
     try:
         # Obtain the spanish model
         nlp = MODELS["es_core_news_sm"]
